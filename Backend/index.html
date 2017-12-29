@@ -34,14 +34,14 @@
     <div class="bgbackend-copy">
         <div class="w-container">
             <div class="form-block-2 w-form">
-                <form id="wf-form-ingreso" name="wf-form-ingreso" data-name="ingreso" class="form-3">
+                <!--<form id="wf-form-ingreso" name="wf-form-ingreso" data-name="ingreso" class="form-3">-->
                     <div class="text-block-2">Bienvenido!</div>
                     <label for="cedula" class="field-label">Cédula:</label>
                     <input type="text" class="w-input" maxlength="256" name="cedula" data-name="cedula" placeholder="Ingrese su cédula" id="Cedula" required="">
                     <label for="password" class="field-label-2">Contraseña:</label>
                     <input type="text" class="w-input" maxlength="256" name="password" data-name="password" placeholder="Ingrese la contraseña" id="Password" required="">
                     <input type="submit" value="Ingresar" data-wait="Please wait..." id="ingresar" class="submit-button w-button">
-                </form>
+                <!--</form>-->
 
             </div>
         </div>
@@ -75,6 +75,7 @@
             var cedula = document.querySelector('#Cedula').value;
             var password = document.querySelector('#Password').value;
             var email = cedula + "@bloom.com";
+             console.log(email +" "+ password);
             var auth = null;
             firebase
                 .auth()
