@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <!--  This site was created in Webflow. http://www.webflow.com  -->
 <!--  Last Published: Mon Dec 11 2017 06:00:44 GMT+0000 (UTC)  -->
-<html data-wf-page="5a2e063596bde90001f87572" data-wf-site="5a2cc9177cc4250001941da2">
+<html data-wf-page="5a2e0c474584a6000128bcdc" data-wf-site="5a2cc9177cc4250001941da2">
 
 <head>
      <meta charset="utf-8">
-     <title>backend</title>
-     <meta content="backend" property="og:title">
+     <title>Usuarios</title>
+     <meta content="Usuarios" property="og:title">
      <meta content="width=device-width, initial-scale=1" name="viewport">
      <meta content="Webflow" name="generator">
      <link href="css/normalize.css" rel="stylesheet" type="text/css">
@@ -31,8 +31,10 @@
           }(window, document);
 
      </script>
-     <link href="https://y7v4p6k4.ssl.hwcdn.net/placeholder/favicon.ico" rel="shortcut icon" type="image/x-icon">
-     <link href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png" rel="apple-touch-icon">
+
+
+     <link href="./images/bloomIcon.png" rel="shortcut icon" type="image/x-icon">
+     <link href="./images/bloomIcon.png" rel="apple-touch-icon">
 </head>
 
 <body class="body-2">
@@ -40,7 +42,7 @@
           <div class="logo"></div>
           <div class="menubackend">
                <a href="usuarios.html" id="usuarios" class="button-2 w-button">Usuarios</a>
-               <a href="pruebas.html" id="pruebas" class="button-2 w-button">Pruebas</a>
+               <a href="index.html" id="pruebas" class="button-2 w-button">Pruebas</a>
                <a href="administradores.html" id="administradores" class="button-2 w-button">Administradores</a>
                <a href="resultados.html" id="resultados" class="button-2 w-button">Resultados</a>
                <a class="button-2 w-button" onclick="eliminarUser()" id="eliminar">Eliminar mi cuenta</a>
@@ -49,11 +51,35 @@
           <div class="text-block">Universidad de La Sabana</div>
      </div>
      <div class="bgbackend">
-          <div id="admin">
+          <div class="headerbackend">
+               <h1 class="heading-2">Pruebas</h1>
+          </div>
+          <div class="contentpruebas">
+               <div class="searchnew">
+                    <h3 class="heading-prueba"> Prueba actual</h3>
+               </div>
 
+               <p class="ultiPrueba" id="ultiPrueba"></p>
+          </div>
+          <div class="contentusuarios">
+               <div class="form-block-prueba w-form">
+                    <form id="wf-form-ingreso" name="wf-form-ingreso" data-name="ingreso" class="form-3">
+                         <div class="tituloAgregar">Agregar Prueba</div>
+                         <label id="numero" class="field-label"></label>
+                         <label id="fecha" class="field-label"></label>
+                         <label for="empresa" class="field-label">Empresa</label>
+                         <input type="text" class="w-input" maxlength="256" name="cedula" data-name="cedula" placeholder="Empresa" id="empresa" required="true">
+                         <label for="text" class="field-label-2">Tipo</label>
+                         <select class="w-input" maxlength="256" name="Tipo" data-name="tipo" placeholder="Tipo" id="tipo" required="true">
+                                   <option value="prueba">Prueba</option>
+                                   <option value="definitiva">Definitiva</option>
+                                   </select>
+                         <input type="submit" value="Agregar" onclick="agregarPrueba()" id="ingresar" class="submit-button w-button">
+                    </form>
+
+               </div>
           </div>
      </div>
-
      <script>
           var config = {
                apiKey: "AIzaSyB-CHGXqLBlKQfHmHHYVsIT-_AyBYNkFS0",
@@ -72,20 +98,15 @@
                               var mail = childSnap.val().identificacion.numero + "@bloom.com";
                               if (user.email == mail) {
                                    if (childSnap.val().rol == "administrador") {
-                                        $('#usuarios').show();
-                                        $('#pruebas').show();
-                                        $('#administradores').show();
-                                        $('#admin').append("<p> Bienvenido! <br> Aquí puedes modificar datos sobre los usuarios. <br> No se podran eliminar cuentas de usuarios administradores ajenas ni modificar la identificación.<br> Para eliminar tu cuenta presiona la opción eliminar cuenta en el menú lateral. </p>");
-
+                                        tablaUser();
                                    } else {
-                                        $('#usuarios').hide();
-                                        $('#pruebas').hide();
-                                        $('#administradores').hide();
-                                        $('#admin').append(" <p> Bienvenido! <br> No tienes permiso para modificar informacion de usuarios. <br> En la sección de resultados podrás ver los datos sobre las pruebas. <br> Para eliminar tu cuenta presiona la opción eliminar cuenta en el menú lateral. </p>");
+                                        alert("Ud no esta autorizado para modificar datos");
+                                        window.location.href = "backend.html";
                                    }
                               }
                          });
                     });
+
                } else {
                     alert("Espere...");
                     window.location.href = "index.html";
@@ -100,7 +121,37 @@
           });
 
      </script>
+
      <script>
+          window.numn;
+
+          function tablaUser() {
+               firebase.database().ref("pruebas").limitToLast(1).once("child_added", function(snapshot) {
+                    var num, empresa, tipo, fecha;
+                    num = snapshot.val().numero;
+                    empresa = snapshot.val().empresa;
+                    tipo = snapshot.val().tipo;
+                    fecha = snapshot.val().fecha;
+                    $("#ultiPrueba").append(" Número: " + num + "<br> Empresa: " + empresa + "<br> Fecha: " + fecha + "<br> Tipo: " + tipo);
+                    $("#numero").append("Id: " + (num + 1));
+                    $("#fecha").append("Fecha: " + new Date().toLocaleDateString());
+                    numn = num;
+               });
+          }
+
+          function agregarPrueba() {
+               var empresa = document.querySelector('#empresa').value;
+               var tipo = document.querySelector('#tipo').value;
+               var fecha = new Date().toLocaleDateString();
+               firebase.database().ref("pruebas").push({
+                    empresa: empresa,
+                    fecha: fecha,
+                    numero: numn + 1,
+                    tipo: tipo,
+               });
+               location.reload();
+          }
+
           function eliminarUser() {
                var person = prompt("¿Está seguro? Ingrese su contraseña", "Contraseña de administrador");
                var user = firebase.auth().currentUser;
@@ -130,6 +181,8 @@
           }
 
      </script>
+
+
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
      <script src="js/webflow.js" type="text/javascript"></script>
      <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
