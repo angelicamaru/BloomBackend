@@ -79,7 +79,7 @@
                storageBucket: "bloomsabana.appspot.com",
                messagingSenderId: "584579774141"
           };
-          firebase.initializeApp(config);2
+          firebase.initializeApp(config);
           firebase.auth().onAuthStateChanged(function(user) {
                window.user = user;
                if (user) {
