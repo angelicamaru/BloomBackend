@@ -48,6 +48,9 @@
             <h3>Hanoi</h3>
             <table class="order-table table styTable StandardTable" id="tablaHanoi">
             </table>
+            <h3>Hanoi 2</h3>
+            <table class="order-table table styTable StandardTable" id="tablaHanoi2">
+            </table>
             <h3>Stroop</h3>
             <table class="order-table table styTable StandardTable" id="tablaStroop">
             </table>
@@ -63,7 +66,6 @@
         </div>
         <div class="contentusuarios2">
             <div id="commentBox">
-
 
             </div>
             <div class="commentBox">
@@ -137,19 +139,22 @@
                     if (c == mail) {
                         $("#tituloNombre").text("Prueba de " + childSnap.val().nombre);
 
-                        $("#tablaHanoi").append("<tr> <td>" + childSnap.val().hanoi.estado + "</td> <td>" + childSnap.val().hanoi.movTotales + "</td> <td>" + childSnap.val().hanoi.movFallidos + "</td> <td>" + childSnap.val().nivel + "</td> <td>" + childSnap.val().fecha + "</td> " + "</tr>");
+                        $("#tablaHanoi").append("<tr> <td>" + childSnap.val().hanoi.estado + "</td> <td>" + childSnap.val().hanoi.correctos + "</td> <td>" + childSnap.val().hanoi.errores + "</td> <td>" + childSnap.val().nivel + "</td> <td>" + childSnap.val().duracionTotal + "</td> " + "</tr>");
                         $("#tablaHanoi").append("</tbody>");
 
-                        $("#tablaStroop").append("<tr> <td>" + childSnap.val().stroop.estado + "</td> <td>" + childSnap.key + "</td> <td>" + childSnap.val().stroop.estado + "</td> <td>" + childSnap.val().nivel + "</td> <td>" + childSnap.val().fecha + "</td> " + "</tr>");
+                        $("#tablaHanoi2").append("<tr> <td>" + childSnap.val().hanoi2.estado + "</td> <td>" + childSnap.val().hanoi2.correctos + "</td> <td>" + childSnap.val().hanoi2.errores + "</td> <td>" + childSnap.val().nivel + "</td> <td>" + childSnap.val().duracionTotal + "</td> " + "</tr>");
+                        $("#tablaHanoi2").append("</tbody>");
+
+                        $("#tablaStroop").append("<tr> <td>" + childSnap.val().stroop.estado + "</td> <td>" + childSnap.key.val().stroop.correctos + "</td> <td>" + childSnap.val().stroop.errores + "</td> <td>" + childSnap.val().nivel + "</td> <td>" + childSnap.val().duracionTotal + "</td> " + "</tr>");
                         $("#tablaStroop").append("</tbody>");
 
-                        $("#tablaWisconsin").append("<tr> <td>" + childSnap.val().wisconsin.estado + "</td> <td>" + childSnap.key + "</td> <td>" + childSnap.val().nombre + "</td> <td>" + childSnap.val().nivel + "</td> <td>" + childSnap.val().fecha + "</td> <td>" + childSnap.val().fecha + "</td> <td>" + childSnap.val().fecha + "</td>" + "</tr>");
+                        $("#tablaWisconsin").append("<tr> <td>" + childSnap.val().wisconsin.estado + "</td> <td>" + childSnap.key + "</td> <td>" + childSnap.val().nombre + "</td> <td>" + childSnap.val().nivel + "</td> <td>" + childSnap.val().fecha + "</td> <td>" + childSnap.val().fecha + "</td> <td>" + childSnap.val().duracionTotal + "</td>" + "</tr>");
                         $("#tablaWisconsin").append("</tbody>");
 
-                        $("#tablaToken").append("<tr> <td>" + childSnap.val().token.estado + "</td> <td>" + childSnap.key + "</td> <td>" + childSnap.val().nombre + "</td> <td>" + childSnap.val().nivel + "</td> <td>" + childSnap.val().fecha + "</td> <td>" + childSnap.val().fecha + "</td>" + "</tr>");
+                        $("#tablaToken").append("<tr> <td>" + childSnap.val().token.estado + "</td> <td>" + childSnap.key + "</td> <td>" + childSnap.val().nombre + "</td> <td>" + childSnap.val().nivel + "</td> <td>" + childSnap.val().fecha + "</td> <td>" + childSnap.val().duracionTotal + "</td>" + "</tr>");
                         $("#tablaToken").append("</tbody>");
 
-                        $("#tablaRaven").append("<tr> <td>" + childSnap.val().raven.estado + "</td> <td>" + childSnap.key + "</td> <td>" + childSnap.val().nombre + "</td> <td>" + childSnap.val().nivel + "</td>" + "</tr>");
+                        $("#tablaRaven").append("<tr> <td>" + childSnap.val().raven.estado + "</td> <td>" + childSnap.key + "</td> <td>" + childSnap.val().nombre + "</td> <td>" + childSnap.val().duracionTotal + "</td>" + "</tr>");
                         $("#tablaRaven").append("</tbody>");
                     }
                 });
@@ -217,6 +222,8 @@
         function clearTable() {
             $("#tablaHanoi").append("<thead> <tr> <th>Estado</th><th> No de Mov Acertados </th> <th> No de Errores </th> <th> Latencia </th> <th> Duración Total </th> </tr> </thead> <tbody>");
 
+            $("#tablaHanoi2").append("<thead> <tr> <th>Estado</th><th> No de Mov Acertados </th> <th> No de Errores </th> <th> Latencia </th> <th> Duración Total </th> </tr> </thead> <tbody>");
+
             $("#tablaStroop").append("<thead> <tr> <th>Estado</th> <th> No de Aciertos </th> <th> No de Errores </th> <th> Latencia </th> <th> Duración Total </th> </tr> </thead> <tbody>");
 
             $("#tablaWisconsin").append("<thead> <tr> <th>Estado</th> <th> No de Aciertos </th> <th> Categorias conseguidas </th> <th> Errores Perseverativos </th> <th> Errores No Perseverativos </th> <th> Errores Mantenimiento </th> <th> Duración Total </th> </tr> </thead> <tbody>");
@@ -227,6 +234,9 @@
 
             while (document.getElementById('tablaHanoi').rows.length > 1) {
                 document.getElementById('tablaHanoi').deleteRow(1);
+            }
+            while (document.getElementById('tablaHanoi2').rows.length > 1) {
+                document.getElementById('tablaHanoi2').deleteRow(1);
             }
 
             while (document.getElementById('tablaStroop').rows.length > 1) {
@@ -245,7 +255,7 @@
         }
     </script>
     <script>
-        function cargar() {¡
+        function cargar() {
             firebase.database().ref().child("usuarios/" + window.key + "/comentarios").once("value").then(function(snap2) {
                 snap2.forEach(function(childSnap2) {
                     $("#commentBox").append("<div class='comment'> <h5>" + childSnap2.val().user + ":" + " </h5><p style='font-size:16px; margin-top: -8px;'>" + childSnap2.val().text + " </p></div>");
