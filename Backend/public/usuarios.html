@@ -146,11 +146,12 @@
                     if (prueba == selec) {
                         var email = childSnap.val().identificacion.numero;
                         var cargo = childSnap.val().cargo;
+                        var genero = childSnap.val().genero;
                         var fecha = childSnap.val().fecha;
                         var tipo = childSnap.val().identificacion.tipo;
                         var nivel = childSnap.val().nivel;
                         var nombre = childSnap.val().nombre;
-                        $("#tabla").append("<tr> <td>" + email + "</td> <td>" + tipo + "</td> <td>" + nombre + "</td> <td>" + fecha + "</td> <td>" + cargo + " </td> <td>" + nivel + "</td> <td> <input type='submit' id='" + email + "' value='Editar' onclick='editarUser(" + email + ")'> </td> <td> <input type='submit' id='" + email + "' value='Eliminar' onclick='eliminarUser(" + email.toString() + ")'> </td>" + "</tr>");
+                        $("#tabla").append("<tr> <td>" + email + "</td> <td>" + tipo + "</td> <td>" + nombre + "</td> <td>" + fecha + "</td><td>" + genero + " </td> <td>" + cargo + " </td> <td>" + nivel + "</td> <td> <input type='submit' id='" + email + "' value='Editar' onclick='editarUser(" + email + ")'> </td> <td> <input type='submit' id='" + email + "' value='Eliminar' onclick='eliminarUser(" + email.toString() + ")'> </td>" + "</tr>");
 
                     }
 
@@ -262,7 +263,7 @@
 
         function clearTable() {
 
-            $("#tabla").append("<thead> <tr> <th> Identificación </th> <th> Tipo </th> <th> Nombre </th> <th> FechaNacimiento </th> <th> Cargo </th> <th> Nivel </th></tr> </thead> <tbody>");
+            $("#tabla").append("<thead> <tr> <th> Identificación </th> <th> Tipo </th> <th> Nombre </th> <th> FechaNacimiento </th> <th> Género </th><th> Cargo </th> <th> Nivel </th></tr> </thead> <tbody>");
             var tableRef = document.getElementById('tabla');
             while (tableRef.rows.length > 1) {
                 tableRef.deleteRow(1);
