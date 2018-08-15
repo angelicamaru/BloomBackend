@@ -204,9 +204,9 @@
                         $("#tablaWisconsinL").append("<tbody>");
                         childSnap.val().wisconsin.movTotales.forEach(function(childofChildSnap) {
                             if (childofChildSnap[0] == "1") {
-                                $("#tablaWisconsinL").append("<tr> <td>" + "Acierto" + "</td> <td>" + childofChildSnap[1] + " ms " + "</td> " + "</tr>");
+                                $("#tablaWisconsinL").append("<tr> <td>" + "Acierto" + "</td> <td>" + childofChildSnap[2] + "</td> <td>" + childofChildSnap[1] + " ms " + "</td> " + "</tr>");
                             } else {
-                                $("#tablaWisconsinL").append("<tr> <td>" + "Error" + "</td> <td>" + childofChildSnap[1] + " ms " + "</td> " + "</tr>");
+                                $("#tablaWisconsinL").append("<tr> <td>" + "Error" + "</td> <td>" + childofChildSnap[2] + "</td> <td>" + childofChildSnap[1] + " ms "+ "</td> " + "</tr>");
                             }
                         });
                         $("#tablaWisconsinL").append("</tbody>");
@@ -297,9 +297,9 @@
                                     $("#tablaWisconsinL").append("<tbody>");
                                     childSnap2.val().wisconsin.movTotales.forEach(function(childofChildSnap) {
                                         if (childofChildSnap[0] == "1") {
-                                            $("#tablaWisconsinL").append("<tr> <td>" + "Acierto" + "</td> <td>" + childofChildSnap[1] + " ms " + "</td> " + "</tr>");
+                                            $("#tablaWisconsinL").append("<tr> <td>" + "Acierto" + "</td> <td>" + childofChildSnap[2]  + "</td><td>" + childofChildSnap[1] + " ms "+ "</td>  " + "</tr>");
                                         } else {
-                                            $("#tablaWisconsinL").append("<tr> <td>" + "Error" + "</td> <td>" + childofChildSnap[1] + " ms " + "</td> " + "</tr>");
+                                            $("#tablaWisconsinL").append("<tr> <td>" + "Error" + "</td> <td>" + childofChildSnap[2] + "</td><td>" + childofChildSnap[1] + " ms "+ "</td> " + "</tr>");
                                         }
                                     });
                                     $("#tablaWisconsinL").append("</tbody>");
