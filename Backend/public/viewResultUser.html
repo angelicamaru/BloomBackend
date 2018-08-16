@@ -248,12 +248,15 @@
                             snap2.forEach(function(childSnap2) {
                                 if (childSnap2.key.includes("entre")) {
 
-                                    $("#tablaHanoi").append("<tr> <td>--- </td> <td>" + childSnap2.movAcertados + "</td> <td>" + childSnap2.movFallidos + "</td> <td>" + childSnap2.key + "</td> <td> <input type='checkbox' id='hanoi1Check' onchange='latenciacheck(tablaHanoiL, this)' checked /></td> <td>" + childSnap2.duracionTotal + " ms"+"</td> " + "</tr>");
+
+                                    console.log(childSnap2);
+
+                                    $("#tablaHanoi").append("<tr> <td>--- </td> <td>" + childSnap2.val().movAcertados + "</td> <td>" + childSnap2.val().movFallidos + "</td> <td> <input type='checkbox' id='hanoi1Check' onchange='latenciacheck(tablaHanoiL, this)' checked /></td> <td>" + childSnap2.val().duracionTotal + " ms"+"</td> " + "</tr>");
                                     $("#tablaHanoi").append("</tbody>");
 
 
                                     $("#tablaHanoiL").append("<tbody>");
-                                    childSnap2.movTotales.forEach(function(childofChildSnap) {
+                                    childSnap2.val().movTotales.forEach(function(childofChildSnap) {
                                         if (childofChildSnap[0] == "1") {
                                             $("#tablaHanoiL").append("<tr> <td>" + "Acierto" + "</td> <td>" + childofChildSnap[1] + " ms " + "</td> " + "</tr>");
                                         } else {
@@ -268,12 +271,12 @@
                         firebase.database().ref("usuarios/" + childSnap.key + "/stroop/").once("value").then(function(snap2) {
                             snap2.forEach(function(childSnap2) {
                                 if (childSnap2.key.includes("entre")) {
-                                    $("#tablaStroop").append("<tr> <td>--</td> <td>" + childSnap2.correctas + "</td> <td>" + childSnap2.errores + "</td> <td> <input type='checkbox' id='stroopCheck' onchange='latenciacheck(tablaStroopL, this)' checked /></td><td>" + childSnap2.duracionTotal + " ms"+"</td> " + "</tr>");
+                                    $("#tablaStroop").append("<tr> <td>--</td> <td>" + childSnap2.val().correctas + "</td> <td>" + childSnap2.val().errores + "</td> <td> <input type='checkbox' id='stroopCheck' onchange='latenciacheck(tablaStroopL, this)' checked /></td><td>" + childSnap2.val().duracionTotal + " ms"+"</td> " + "</tr>");
                                     $("#tablaStroop").append("</tbody>");
 
 
                                     $("#tablaStroopL").append("<tbody>");
-                                    childSnap2.val().stroop.movTotales.forEach(function(childofChildSnap) {
+                                    childSnap2.val().movTotales.forEach(function(childofChildSnap) {
                                         if (childofChildSnap[0] == "1") {
                                             $("#tablaStroopL").append("<tr> <td>" + "Acierto" + "</td> <td>" + childofChildSnap[1] + " ms " + "</td> " + "</tr>");
                                         } else {
@@ -291,11 +294,11 @@
                             snap2.forEach(function(childSnap2) {
                                 if (childSnap2.key.includes("entre")) {
 
-                                    $("#tablaWisconsin").append("<tr> <td>--</td> <td>" + childSnap2.key + "</td> <td>" + childSnap2.key + "</td> <td>" + childSnap2.key + "</td> <td>" + childSnap2.key + "</td> <td>" + childSnap2.key + "</td> <td><input type='checkbox' id='wisconsinCheck' onchange='latenciacheck(tablaWisconsinL, this)' checked /> </td><td>" + childSnap2.duracionTotal +" ms"+ "</td>" + "</tr>");
+                                    $("#tablaWisconsin").append("<tr> <td>--</td> <td>" + childSnap2.key + "</td> <td>" + childSnap2.key + "</td> <td>" + childSnap2.key + "</td> <td>" + childSnap2.key + "</td> <td>" + childSnap2.key + "</td> <td><input type='checkbox' id='wisconsinCheck' onchange='latenciacheck(tablaWisconsinL, this)' checked /> </td><td>" + childSnap2.val().duracionTotal +" ms"+ "</td>" + "</tr>");
                                     $("#tablaWisconsin").append("</tbody>");
 
                                     $("#tablaWisconsinL").append("<tbody>");
-                                    childSnap2.val().wisconsin.movTotales.forEach(function(childofChildSnap) {
+                                    childSnap2.val().movTotales.forEach(function(childofChildSnap) {
                                         if (childofChildSnap[0] == "1") {
                                             $("#tablaWisconsinL").append("<tr> <td>" + "Acierto" + "</td> <td>" + childofChildSnap[2]  + "</td><td>" + childofChildSnap[1] + " ms "+ "</td>  " + "</tr>");
                                         } else {
@@ -311,12 +314,12 @@
                         firebase.database().ref("usuarios/" + childSnap.key + "/token/").once("value").then(function(snap2) {
                             snap2.forEach(function(childSnap2) {
                                 if (childSnap2.key.includes("entre")) {
-                                    $("#tablaToken").append("<tr> <td>--</td> <td>" + childSnap2.key + "</td> <td>" + childSnap2.key + "</td> <td>" + childSnap2.key + "</td> <td> <input type='checkbox' id='tokenCheck' onchange='latenciacheck(tablaTokenL, this)' checked /></td><td>" + childSnap2.duracionTotal + " ms"+"</td>" + "</tr>");
+                                    $("#tablaToken").append("<tr> <td>--</td> <td>" + childSnap2.key + "</td> <td>" + childSnap2.key + "</td> <td>" + childSnap2.key + "</td> <td> <input type='checkbox' id='tokenCheck' onchange='latenciacheck(tablaTokenL, this)' checked /></td><td>" + childSnap2.val().duracionTotal + " ms"+"</td>" + "</tr>");
                                     $("#tablaToken").append("</tbody>");
 
 
                                     $("#tablaTokenL").append("<tbody>");
-                                    childSnap2.val().token.movTotales.forEach(function(childofChildSnap) {
+                                    childSnap2.val().movTotales.forEach(function(childofChildSnap) {
                                         if (childofChildSnap[0] == "1") {
                                             $("#tablaTokenL").append("<tr> <td>" + "Acierto" + "</td> <td>" + childofChildSnap[1] + " ms " + "</td> " + "</tr>");
                                         } else {
@@ -330,7 +333,7 @@
                         firebase.database().ref("usuarios/" + childSnap.key + "/raven/").once("value").then(function(snap2) {
                             snap2.forEach(function(childSnap2) {
                                 if (childSnap2.key.includes("entre")) {
-                                    $("#tablaRaven").append("<tr> <td>--</td> <td>" + childSnap2.correctas + "</td> <td>" + childSnap2.errores + "</td> <td>" + childSnap2.duracionTotal + " ms"+"</td>" + "</tr>");
+                                    $("#tablaRaven").append("<tr> <td>--</td> <td>" + childSnap2.val().correctas + "</td> <td>" + childSnap2.val().errores + "</td> <td>" + childSnap2.val().duracionTotal + " ms"+"</td>" + "</tr>");
                                     $("#tablaRaven").append("</tbody>");
                                 }
                             });
