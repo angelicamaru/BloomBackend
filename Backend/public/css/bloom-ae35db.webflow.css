@@ -1,3 +1,40 @@
+@media print {
+    * {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        z-index: 15;
+        top: 50%;
+        background-color: aqua;
+        left: 50%;
+        margin: -150px 0 0 -150px;
+    }
+    #tablas {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        z-index: 15;
+        top: 50%;
+        background-color: aqua;
+        left: 50%;
+        margin: -150px 0 0 -150px;
+
+    }
+}
+#print_frame {
+
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        z-index: 15;
+        top: 50%;
+        background-color: aqua;
+        left: 50%;
+        margin: -150px 0 0 -150px;
+}
+
+
+
 body {
     background-color: #fff;
     font-family: Roboto, sans-serif;
@@ -476,6 +513,7 @@ p {
     -ms-flex-direction: column;
     flex-direction: column;
 }
+
 .contentusuarios3 {
     position: relative;
     left: 50%;
@@ -851,6 +889,7 @@ p {
     padding-top: 20px;
     font-size: 13px;
 }
+
 .commentBox {
     display: flex;
     flex-direction: column;
@@ -861,7 +900,8 @@ p {
     padding: 20px 20px 20px 20px;
     font-size: 13px;
 }
-.comment{
+
+.comment {
     font-size: 7px;
     border: 1px solid lightgray;
 
