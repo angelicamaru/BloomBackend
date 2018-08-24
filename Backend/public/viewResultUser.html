@@ -160,9 +160,8 @@
                         $("#tablaHanoi").append("<tr> <td>" + childSnap.val().hanoi.estado + "</td> <td>" + childSnap.val().hanoi.movAcertados + "</td> <td>" + childSnap.val().hanoi.movFallidos + "</td> <td> <input type='checkbox' id='hanoi1Check' onchange='latenciacheck(tablaHanoiL, this)' checked /></td> <td>" + childSnap.val().hanoi.duracionTotal + " ms" + "</td> " + "</tr>");
                         $("#tablaHanoi").append("</tbody>");
                         $("#tablaHanoiL").append("<tbody>");
-                        if (childSnap.val().hanoi.movTotales = "undefined") {
+                        if (childSnap.val().hanoi.movTotales != "undefined") {
 
-                        } else {
                             childSnap.val().hanoi.movTotales.forEach(function(childofChildSnap) {
                                 if (childofChildSnap[0] == "1") {
                                     $("#tablaHanoiL").append("<tr> <td>" + "Acierto" + "</td> <td>" + childofChildSnap[1] + " ms " + "</td> " + "</tr>");
@@ -179,9 +178,8 @@
                         $("#tablaHanoi2").append("</tbody>");
                         $("#tablaHanoi2L").append("<tbody>");
 
-                        if (childSnap.val().hanoi2.movTotales = "undefined") {
+                        if (childSnap.val().hanoi2.movTotales != "undefined") {
 
-                        } else {
                             childSnap.val().hanoi2.movTotales.forEach(function(childofChildSnap) {
                                 if (childofChildSnap[0] == "1") {
                                     $("#tablaHanoi2L").append("<tr> <td>" + "Acierto" + "</td> <td>" + childofChildSnap[1] + " ms " + "</td> " + "</tr>");
@@ -198,9 +196,7 @@
                         $("#tablaStroop").append("</tbody>");
                         $("#tablaStroopL").append("<tbody>");
 
-                        if (childSnap.val().stroop.movTotales = "undefined") {
-
-                        } else {
+                       /* if (childSnap.val().stroop.movTotales != "undefined"){
                             childSnap.val().stroop.movTotales.forEach(function(childofChildSnap) {
                                 if (childofChildSnap[0] == "1") {
                                     $("#tablaStroopL").append("<tr> <td>" + "Acierto" + "</td> <td>" + childofChildSnap[1] + " ms " + "</td> " + "</tr>");
@@ -208,7 +204,7 @@
                                     $("#tablaStroopL").append("<tr> <td>" + "Error" + "</td> <td>" + childofChildSnap[1] + " ms " + "</td> " + "</tr>");
                                 }
                             });
-                        }
+                        }*/
                         $("#tablaStroopL").append("</tbody>");
 
 
@@ -216,10 +212,7 @@
                         $("#tablaWisconsin").append("<tr> <td>" + childSnap.val().wisconsin.estado + "</td> <td>" + childSnap.key + "</td> <td>" + childSnap.val().nombre + "</td> <td>" + childSnap.val().nivel + "</td> <td>" + childSnap.val().fecha + "</td> <td>" + childSnap.val().fecha + "</td> <td><input type='checkbox' id='wisconsinCheck' onchange='latenciacheck(tablaWisconsinL, this)' checked /> </td><td>" + childSnap.val().wisconsin.duracionTotal + " ms" + "</td>" + "</tr>");
                         $("#tablaWisconsin").append("</tbody>");
                         $("#tablaWisconsinL").append("<tbody>");
-                        if (childSnap.val().wisconsin.movTotales = "undefined") {
-
-                        } else {
-
+                        if (childSnap.val().wisconsin.movTotales != "undefined") {
                             childSnap.val().wisconsin.movTotales.forEach(function(childofChildSnap) {
                                 if (childofChildSnap[0] == "1") {
                                     $("#tablaWisconsinL").append("<tr> <td>" + "Acierto" + "</td> <td>" + childofChildSnap[2] + "</td> <td>" + childofChildSnap[1] + " ms " + "</td> " + "</tr>");
@@ -232,12 +225,12 @@
 
 
 
-                        $("#tablaToken").append("<tr> <td>" + childSnap.val().token.estado + "</td> <td>" + childSnap.key + "</td> <td>" + childSnap.val().nombre + "</td> <td>" + childSnap.val().nivel + "</td> <td> <input type='checkbox' id='tokenCheck' onchange='latenciacheck(tablaTokenL, this)' checked /></td> <td>" + childSnap.val().token.duracionTotal + " ms" + "</td>" + "</tr>");
+                       /* $("#tablaToken").append("<tr> <td>" + childSnap.val().token.estado + "</td> <td>" + childSnap.key + "</td> <td>" + childSnap.val().nombre + "</td> <td>" + childSnap.val().nivel + "</td> <td> <input type='checkbox' id='tokenCheck' onchange='latenciacheck(tablaTokenL, this)' checked /></td> <td>" + childSnap.val().token.duracionTotal + " ms" + "</td>" + "</tr>");
                         $("#tablaToken").append("</tbody>");
                         $("#tablaTokenL").append("<tbody>");
-                        if (childSnap.val().token.movTotales = "undefined") {
+                        if (childSnap.val().token.movTotales != "undefined") {
 
-                        } else {
+
                             childSnap.val().token.movTotales.forEach(function(childofChildSnap) {
                                 if (childofChildSnap[0] == "1") {
                                     $("#tablaTokenL").append("<tr> <td>" + "Acierto" + "</td> <td>" + childofChildSnap[1] + " ms " + "</td> " + "</tr>");
@@ -246,7 +239,7 @@
                                 }
                             });
                         }
-                        $("#tablaTokenL").append("</tbody>");
+                        $("#tablaTokenL").append("</tbody>");*/
 
 
                         $("#tablaRaven").append("<tr> <td>" + childSnap.val().raven.estado + "</td> <td>" + childSnap.val().raven.correctas + "</td> <td>" + childSnap.val().raven.errores + "</td> <td>" + childSnap.val().raven.duracionTotal + " ms" + "</td>" + "</tr>");
