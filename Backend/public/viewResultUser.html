@@ -151,6 +151,12 @@
             var url_string = window.location.href;
             var url = new URL(url_string);
             var c = url.searchParams.get("c");
+            var i = 0;
+            var a = 0;
+            var b = 0;
+            var c2 = 0;
+            var d = 0;
+            var e = 0;
             firebase.database().ref("usuarios").once("value").then(function(snap) {
                 snap.forEach(function(childSnap) {
                     var mail = childSnap.val().identificacion.numero;
@@ -257,8 +263,39 @@
 
 
                         // Raven
+                        if (childSnap.val().raven.movTotales === undefined) {} else {
+                            childSnap.val().raven.movTotales.forEach(function(jugada) {
+                                if (i > 0 && i < 12) {
+                                    if (jugada[0] == 1) {
+                                        a++;
+                                    }
 
-                        $("#tablaRaven").append("<tr> <td>" + childSnap.val().raven.estado + "</td><td>" + childSnap.val().raven.anteriormente + "</td> <td>" + childSnap.val().raven.correctas + "</td> <td>" + childSnap.val().raven.errores + "</td> <td>" + childSnap.val().raven.duracionTotal + " ms" + "</td>" + "</tr>");
+                                } else if (i < 24) {
+                                    if (jugada[0] == 1) {
+                                        b++;
+                                    }
+
+                                } else if (i < 36) {
+                                    if (jugada[0] == 1) {
+                                        c2++;
+                                    }
+
+                                } else if (i < 48) {
+                                    if (jugada[0] == 1) {
+                                        d++;
+                                    }
+
+                                } else if (i < 60) {
+                                    if (jugada[0] == 1) {
+                                        e++;
+                                    }
+
+                                }
+                                i++;
+                            });
+                        }
+
+                        $("#tablaRaven").append("<tr> <td>" + childSnap.val().raven.estado + "</td><td>" + childSnap.val().raven.anteriormente + "</td> <td>" + a + "</td> <td>" + b + "</td> <td>" + c2+ "</td><td>" + d+ "</td><td>" + e + "</td><td>" + (a+b+c2+d+e) + "</td><td>" + childSnap.val().raven.duracionTotal + " ms" + "</td>" + "</tr>");
                         $("#tablaRaven").append("</tbody>");
                     }
                 });
@@ -365,7 +402,7 @@
                         firebase.database().ref("usuarios/" + childSnap.key + "/raven/").once("value").then(function(snap2) {
                             snap2.forEach(function(childSnap2) {
                                 if (childSnap2.key.includes("entre")) {
-                                    $("#tablaRaven").append("<tr> <td>--</td> <td>--</td><td>" + childSnap2.val().correctas + "</td> <td>" + childSnap2.val().errores + "</td> <td>" + childSnap2.val().duracionTotal + " ms" + "</td>" + "</tr>");
+                                    $("#tablaRaven").append("<tr> <td>--</td> <td>--</td><td>" + childSnap2.val().correctas + "</td> <<td>" + '-' + "</td><td>" + '-' + "</td><td>" + '-' + "</td><td>" + '-' + "</td><td>" + childSnap2.val().correctas + "</td><td>" + childSnap2.val().duracionTotal + " ms" + "</td>" + "</tr>");
                                     $("#tablaRaven").append("</tbody>");
                                 }
                             });
@@ -387,7 +424,7 @@
 
             $("#tablaToken").append("<thead> <tr> <th>Estado</th> <th>Antes?</th><th> Aciertos Palabras </th> <th> Aciertos Colores </th> <th> Palabras-Colores </th> <th> Latencia </th> <th> Duración Total </th> </tr> </thead> <tbody>");
 
-            $("#tablaRaven").append("<thead> <tr> <th>Estado</th> <th>Antes?</th><th> Aciertos  </th> <th> Incorrectas </th> <th> Duración Total </th> </tr> </thead> <tbody>");
+            $("#tablaRaven").append("<thead> <tr> <th>Estado</th> <th>Antes?</th><th> A </th> <th> B </th> <th> C</th><th> D </th><th> E </th><th> Total </th><th> Duración Total </th> </tr> </thead> <tbody>");
 
             while (document.getElementById('tablaHanoi').rows.length > 1) {
                 document.getElementById('tablaHanoi').deleteRow(1);
