@@ -143,7 +143,16 @@
                 snap.forEach(function(childSnap) {
                     var prueba = childSnap.val().prueba;
                     var selec = document.querySelector('#tipoS').value;
+                   
+                   /* if (prueba == selec) {
+                     console.log(prueba)
+                     if(childSnap.val().identificacion != undefined ){
+                     console.log(childSnap.val().identificacion.numero)
+                     }
+                    }*/
                     if (prueba == selec) {
+                     //console.log(prueba)
+                     if(childSnap.val().identificacion != undefined ){
                         var email = childSnap.val().identificacion.numero;
                         var cargo = childSnap.val().cargo;
                         var genero = childSnap.val().genero;
@@ -152,7 +161,7 @@
                         var nivel = childSnap.val().nivel;
                         var nombre = childSnap.val().nombre;
                         $("#tabla").append("<tr> <td>" + email + "</td> <td>" + tipo + "</td> <td>" + nombre + "</td> <td>" + fecha + "</td><td>" + genero + " </td> <td>" + cargo + " </td> <td>" + nivel + "</td> <td> <input type='submit' id='" + email + "' value='Editar' onclick='editarUser(" + email + ")'> </td> <td> <input type='submit' id='" + email + "' value='Eliminar' onclick='eliminarUser(" + email.toString() + ")'> </td>" + "</tr>");
-
+                     }
                     }
 
                 });
@@ -177,6 +186,7 @@
             user.reauthenticateWithCredential(credential).then(function() {
                 firebase.database().ref("usuarios").once("value").then(function(snap) {
                     snap.forEach(function(childSnap) {
+                        if(childSnap.val().identificacion !=  undefined){
                         var email = childSnap.val().identificacion.numero;
                         var tipo = childSnap.val().identificacion.tipo;
                         console.log(tipo);
@@ -222,6 +232,7 @@
                                 });
                             }
                         }
+                    }
                     });
                 }).catch(function(error) {
                     console.log(error);
