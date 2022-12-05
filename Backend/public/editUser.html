@@ -133,15 +133,61 @@
 
      </script>
      <script>
-          function guardar() {
-               firebase.database().ref().child("usuarios/" + window.id).update({
+
+
+function guardar() {
+     const numero2 = window.location.search;
+               console.log(numero2);
+            var person = prompt("¿Está seguro? Ingrese su contraseña", "Contraseña de administrador");
+            var user = firebase.auth().currentUser;
+            var credential = firebase.auth.EmailAuthProvider.credential(
+                user.email,
+                person
+            );
+            const emailAc = user.email;
+            user.reauthenticateWithCredential(credential).then(function() {
+                firebase.database().ref("usuarios").once("value").then(function(snap) {
+                    snap.forEach(function(childSnap) {
+                         var email = childSnap.val().identificacion.numero;
+
+                         console.log("usuarios/" + childSnap.key)
+                         console.log(email)
+                         console.log( document.querySelector('#nivel').value)
+
+               firebase.database().ref("/usuarios/" + childSnap.key).update( {
+
+               nivel: document.querySelector('#nivel').value,
+               cargo: document.querySelector('#cargo').value,
+               prueba: document.querySelector('#prueba').value,
+               fecha: document.querySelector('#fecha').value,
+               nombre: document.querySelector('#nombre').value
+               }).then(function() {
+                    console.log("yeah")
+               window.location = "usuarios.html";
+               }).catch(function(error) {
+               console.log(error);
+               alert("Algo salió mal :(");
+               });
+               });
+               });
+                         });
+                         }
+
+                    
+
+        function guardar2() {
+          //function guardar() {
+               const queryString = window.location.search;
+               console.log(queryString);
+              
+               firebase.database().ref().child("usuarios/" + queryString).update({
                     nivel: document.querySelector('#nivel').value,
                     cargo: document.querySelector('#cargo').value,
                     prueba: document.querySelector('#prueba').value,
                     fecha: document.querySelector('#fecha').value,
                     nombre: document.querySelector('#nombre').value
                }).then(function() {
-                    window.location = "usuarios.html";
+                   // window.location = "usuarios.html";
                }).catch(function(error) {
                     console.log(error);
                     alert("Algo salió mal :(");

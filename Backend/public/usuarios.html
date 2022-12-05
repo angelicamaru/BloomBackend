@@ -138,18 +138,12 @@
     </script>
     <script>
         function tablaUser() {
+            console.log("hey")
             clearTable();
             firebase.database().ref("usuarios").once("value").then(function(snap) {
                 snap.forEach(function(childSnap) {
                     var prueba = childSnap.val().prueba;
                     var selec = document.querySelector('#tipoS').value;
-                   
-                   /* if (prueba == selec) {
-                     console.log(prueba)
-                     if(childSnap.val().identificacion != undefined ){
-                     console.log(childSnap.val().identificacion.numero)
-                     }
-                    }*/
                     if (prueba == selec) {
                      //console.log(prueba)
                      if(childSnap.val().identificacion != undefined ){
@@ -160,7 +154,10 @@
                         var tipo = childSnap.val().identificacion.tipo;
                         var nivel = childSnap.val().nivel;
                         var nombre = childSnap.val().nombre;
+                        //deleteAllUsers
                         $("#tabla").append("<tr> <td>" + email + "</td> <td>" + tipo + "</td> <td>" + nombre + "</td> <td>" + fecha + "</td><td>" + genero + " </td> <td>" + cargo + " </td> <td>" + nivel + "</td> <td> <input type='submit' id='" + email + "' value='Editar' onclick='editarUser(" + email + ")'> </td> <td> <input type='submit' id='" + email + "' value='Eliminar' onclick='eliminarUser(" + email.toString() + ")'> </td>" + "</tr>");
+
+                      //  $("#tabla").append("<tr> <td>" + email + "</td> <td>" + tipo + "</td> <td>" + nombre + "</td> <td>" + fecha + "</td><td>" + genero + " </td> <td>" + cargo + " </td> <td>" + nivel + "</td> <td> <input type='submit' id='" + email + "' value='Editar' onclick='editarUser(" + email + ")'> </td> <td> <input type='submit' id='" + email + "' value='Eliminar' onclick='deleteAllUsers()'> </td>" + "</tr>");
                      }
                     }
 
@@ -175,6 +172,9 @@
 
         }
 
+
+
+
         function eliminarUser(numero2) {
             var person = prompt("¿Está seguro? Ingrese su contraseña", "Contraseña de administrador");
             var user = firebase.auth().currentUser;
@@ -186,10 +186,10 @@
             user.reauthenticateWithCredential(credential).then(function() {
                 firebase.database().ref("usuarios").once("value").then(function(snap) {
                     snap.forEach(function(childSnap) {
-                        if(childSnap.val().identificacion !=  undefined){
+                       /* if(childSnap.val().identificacion !=  undefined){
                         var email = childSnap.val().identificacion.numero;
                         var tipo = childSnap.val().identificacion.tipo;
-                        console.log(tipo);
+                        console.log(tipo);*/
                         if (tipo = !"cedula") {
                             var nu = numero2.item(1).id;
                             if (email == nu) {
@@ -232,7 +232,7 @@
                                 });
                             }
                         }
-                    }
+                   // }
                     });
                 }).catch(function(error) {
                     console.log(error);
