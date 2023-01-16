@@ -114,7 +114,7 @@
                var fecha = document.querySelector('#fecha');
                var cargo = document.querySelector('#cargo');
                var prueba = document.querySelector('#prueba');
-               alert("Al guardar se reemplazarán todos los campos");
+               //alert("Al guardar se reemplazarán todos los campos");
                firebase.database().ref("usuarios").once("value").then(function(snap) {
                     snap.forEach(function(childSnap) {
                          var mail = childSnap.val().identificacion.numero;
@@ -136,62 +136,34 @@
 
 
 function guardar() {
-     const numero2 = window.location.search;
-               console.log(numero2);
-            var person = prompt("¿Está seguro? Ingrese su contraseña", "Contraseña de administrador");
-            var user = firebase.auth().currentUser;
-            var credential = firebase.auth.EmailAuthProvider.credential(
-                user.email,
-                person
-            );
-            const emailAc = user.email;
-            user.reauthenticateWithCredential(credential).then(function() {
-                firebase.database().ref("usuarios").once("value").then(function(snap) {
-                    snap.forEach(function(childSnap) {
-                         var email = childSnap.val().identificacion.numero;
 
-                         console.log("usuarios/" + childSnap.key)
-                         console.log(email)
-                         console.log( document.querySelector('#nivel').value)
+     var identificationToEdit = window.location.search.replace('?c=','')
 
-               firebase.database().ref("/usuarios/" + childSnap.key).update( {
-
+firebase.database().ref("usuarios").once("value").then(function(snap) {
+    snap.forEach(function(childSnap) {
+         var identification = childSnap.val().identificacion.numero;
+         var userKey = childSnap.key
+         
+         if(identificationToEdit == identification){
+          console.log(identificationToEdit)
+          console.log(identification)
+          console.log("Esta es la llave: " +userKey)
+              firebase.database().ref().child("usuarios/" + userKey).update({
                nivel: document.querySelector('#nivel').value,
                cargo: document.querySelector('#cargo').value,
                prueba: document.querySelector('#prueba').value,
                fecha: document.querySelector('#fecha').value,
                nombre: document.querySelector('#nombre').value
-               }).then(function() {
-                    console.log("yeah")
-               window.location = "usuarios.html";
-               }).catch(function(error) {
-               console.log(error);
-               alert("Algo salió mal :(");
-               });
-               });
-               });
-                         });
-                         }
-
-                    
-
-        function guardar2() {
-          //function guardar() {
-               const queryString = window.location.search;
-               console.log(queryString);
-              
-               firebase.database().ref().child("usuarios/" + queryString).update({
-                    nivel: document.querySelector('#nivel').value,
-                    cargo: document.querySelector('#cargo').value,
-                    prueba: document.querySelector('#prueba').value,
-                    fecha: document.querySelector('#fecha').value,
-                    nombre: document.querySelector('#nombre').value
-               }).then(function() {
-                   // window.location = "usuarios.html";
-               }).catch(function(error) {
-                    console.log(error);
-                    alert("Algo salió mal :(");
-               });
+              }).then(function() {
+                   window.location = "usuarios.html";
+              }).catch(function(error) {
+                   console.log(error);
+                   alert("Algo salió mal :(");
+              });
+         }
+         
+    });
+});
 
           }
 

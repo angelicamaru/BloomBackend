@@ -77,7 +77,8 @@
             var password = document.querySelector('#Password').value;
             var email = cedula + "@bloom.com";
             var auth = null;
-            console.log("1018502640")
+            console.log(email)
+            console.log(password)
             firebase
                 .auth()
                 .signInWithEmailAndPassword(email, password)

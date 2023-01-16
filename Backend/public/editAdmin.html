@@ -102,7 +102,7 @@
                var empresa = document.querySelector('#empresa');
                var nombre = document.querySelector('#nombre');
                var rol = document.querySelector('#rol');
-               alert("Al guardar se reemplazarán todos los campos");
+              // alert("Al guardar se reemplazarán todos los campos");
                firebase.database().ref("administradores").once("value").then(function(snap) {
                     snap.forEach(function(childSnap) {
                          var mail = childSnap.val().identificacion.numero;
@@ -119,16 +119,31 @@
      </script>
      <script>
           function guardar() {
-               firebase.database().ref().child("administradores/" + window.id).update({
-                    empresa: document.querySelector('#empresa').value,
-                    rol: document.querySelector('#rol').value,
-                    nombre: document.querySelector('#nombre').value
-               }).then(function() {
-                    window.location = "administradores.html";
-               }).catch(function(error) {
-                    console.log(error);
-                    alert("Algo salió mal :(");
+               var identificationToEdit = window.location.search.replace('?c=','')
+
+                firebase.database().ref("administradores").once("value").then(function(snap) {
+                    snap.forEach(function(childSnap) {
+                         var identification = childSnap.val().identificacion.numero;
+                         var userKey = childSnap.key
+                         console.log("Esta es la llave: " +userKey)
+                         if(identificationToEdit == identification){
+                              firebase.database().ref().child("administradores/" + userKey).update({
+                                   empresa: document.querySelector('#empresa').value,
+                                   rol: document.querySelector('#rol').value,
+                                   nombre: document.querySelector('#nombre').value
+                              }).then(function() {
+                                   window.location = "administradores.html";
+                              }).catch(function(error) {
+                                   console.log(error);
+                                   alert("Algo salió mal :(");
+                              });
+                         }
+                         console.log(userKey)
+                    });
                });
+
+          
+
           }
 
      </script>

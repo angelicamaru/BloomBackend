@@ -24,7 +24,8 @@
     </script>
     <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
     <script type="text/javascript">
-        ! function(o, c) {
+
+! function(o, c) {
             var n = c.documentElement,
                 t = " w-mod-";
             n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
@@ -154,10 +155,10 @@
                         var tipo = childSnap.val().identificacion.tipo;
                         var nivel = childSnap.val().nivel;
                         var nombre = childSnap.val().nombre;
-                        //deleteAllUsers
-                        $("#tabla").append("<tr> <td>" + email + "</td> <td>" + tipo + "</td> <td>" + nombre + "</td> <td>" + fecha + "</td><td>" + genero + " </td> <td>" + cargo + " </td> <td>" + nivel + "</td> <td> <input type='submit' id='" + email + "' value='Editar' onclick='editarUser(" + email + ")'> </td> <td> <input type='submit' id='" + email + "' value='Eliminar' onclick='eliminarUser(" + email.toString() + ")'> </td>" + "</tr>");
 
-                      //  $("#tabla").append("<tr> <td>" + email + "</td> <td>" + tipo + "</td> <td>" + nombre + "</td> <td>" + fecha + "</td><td>" + genero + " </td> <td>" + cargo + " </td> <td>" + nivel + "</td> <td> <input type='submit' id='" + email + "' value='Editar' onclick='editarUser(" + email + ")'> </td> <td> <input type='submit' id='" + email + "' value='Eliminar' onclick='deleteAllUsers()'> </td>" + "</tr>");
+                        $("#tabla").append("<tr> <td>" + email + "</td> <td>" + tipo + "</td> <td>" + nombre + "</td> <td>" + fecha + "</td><td>" + genero + " </td> <td>" + cargo + " </td> <td>" + nivel + "</td> <td> <input type='submit' id='" + email + "' value='Editar' onclick='editarUser(\"" + email + "\")'> </td> <td> <input type='submit' id='" + email + "' value='Eliminar' onclick='eliminarUser(" + email.toString() + ")'> </td>" + "</tr>");
+
+                      //  $("#tabla").append("<tr> <td>" + email + "</td> <td>" + tipo + "</td> <td>" + nombre + "</td> <td>" + fecha + "</td><td>" + genero + " </td> <td>" + cargo + " </td> <td>" + nivel + "</td> <td> <input type='submit' id='" + email + "> </td> <td> <input type='submit' id='" + email + "> </td>" + "</tr>");
                      }
                     }
 
@@ -166,9 +167,8 @@
             $("#tabla").append("</tbody>");
         }
 
-        function editarUser(numero1) {
-
-            window.location = "editUser.html?c=" + numero1;
+        function editarUser(num) {
+            window.location = "editUser.html?c=" + num;
 
         }
 
